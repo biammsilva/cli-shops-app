@@ -47,24 +47,27 @@ def check(searching_date: str = str(datetime.today().date())):
         typer.echo("No entries for this month")
     for budget in budgets:
         average_spent = (budget.amount_spent * 100) / budget.budget_amount
-        show_informations = False
+        shop = budget.shop_id
         if average_spent >= 100 and budget.shop_id.online:
-            show_informations = True
-            shop = budget.shop_id
             shop.online = False
             shop.save()
             typer.echo("you reached 100% of your budget, you've been blocked")
         elif 50 <= average_spent < 100:
-            show_informations = True
+            shop.online = True
+            shop.save()
             typer.echo('You reached 50% of the current months budget')
-        if show_informations:
-            remaining_budget = budget.budget_amount - budget.amount_spent
-            typer.echo(str(budget.shop_id) + ' - ' + budget.shop_id.name)
-            typer.echo('Date: ' + str(date.date()))
-            typer.echo("Month's Budget: " + str(budget.budget_amount))
-            typer.echo('Expenditure: ' + str(budget.amount_spent))
-            typer.echo('Remaining budget: ' + str(remaining_budget))
-            typer.echo('------------------')
+        elif average_spent < 50:
+            shop.online = True
+            shop.save()
+        else:
+            continue
+        remaining_budget = budget.budget_amount - budget.amount_spent
+        typer.echo(str(budget.shop_id) + ' - ' + budget.shop_id.name)
+        typer.echo('Date: ' + str(date.date()))
+        typer.echo("Month's Budget: " + str(budget.budget_amount))
+        typer.echo('Expenditure: ' + str(budget.amount_spent))
+        typer.echo('Remaining budget: ' + str(remaining_budget))
+        typer.echo('------------------')
 
 
 if __name__ == "__main__":

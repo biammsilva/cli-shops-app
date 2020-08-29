@@ -99,6 +99,34 @@ class CliTestCase(unittest.TestCase):
                '------------------\n'\
             in result.output
 
+    def test_check_september_notification_changed(self):
+        shop2 = Shops.get(id=2)
+        budget2 = Budgets.get(shop_id=shop2)
+        budget2.amount_spent = 200
+        budget2.save()
+        result = runner.invoke(app, [
+            "check",
+            "--searching-date",
+            "2020-09-01"
+            ]
+        )
+        assert result.exit_code == 0
+        assert shop2.online is True
+        assert 'You reached 50% of the current months budget\n'\
+               '1 - Test Shop 1\n'\
+               'Date: 2020-09-01\n'\
+               "Month's Budget: 500\n"\
+               'Expenditure: 300\n'\
+               'Remaining budget: 200\n'\
+               '------------------\n'\
+               '2 - Test Shop 2\n'\
+               'Date: 2020-09-01\n'\
+               "Month's Budget: 500\n"\
+               'Expenditure: 200\n'\
+               'Remaining budget: 300\n'\
+               '------------------\n'\
+            in result.output
+
     def tearDown(self):
         self.test_db.drop_tables(MODELS)
         self.test_db.close()

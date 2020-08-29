@@ -105,4 +105,4 @@ Yes, i'm checking if the shop is between 50 and 100 percent to make one notifica
 
 * How does your solution handle a budget change after a notification has already been sent?
 
-It checks all the stores, not only the online ones.
+It checks all the stores, not only the online ones. There's a unit test for it.
