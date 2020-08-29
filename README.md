@@ -95,7 +95,7 @@ If you want to add data, you can write in app/migrations/data.py file, or in the
 
 I've add two more commands to visualize the data in the command line. The list of budgets and shops. That way, you can see what has changed in the database.
 
-Challenge resolution time: 5 hours.
+Challenge resolution time: 8 hours.
 
 You can run th application using python console or docker.
 
