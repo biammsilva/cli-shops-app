@@ -94,3 +94,11 @@ I've add two more commands to visualize the data in the command line. The list o
 Challenge resolution time: 5 hours.
 
 You can run th application using python console or docker.
+
+* Does your solution avoid sending duplicate notifications?
+
+Yes, i'm checking if the shop is between 50 and 100 percent to make one notification and 100 percent or more to trigger the other one.
+
+* How does your solution handle a budget change after a notification has already been sent?
+
+It checks all the stores, not only the online ones.
