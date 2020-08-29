@@ -1,56 +1,96 @@
 # Stylight coding assessment - Budget notifications
 
-## Setting up:
+## Python application
 
-### Python application
+### Prerequisites:
 
-Pre-requirements:
-
-* Python >= 3.6
+* Python3
 * Virtualenv
 
-**Setting up:**
+### Setting up:
 
 * Create a virtual environment:
 
-    `virtualenv -p python3 env`
+        virtualenv -p python3 env
 
 * Activate the environment:
 
-    `source env/bin/activate`
+        source env/bin/activate
 
 * Install the dependencies:
 
-    `pip install -r requirements.txt`
+        pip install -r requirements.txt
     
 * Set up de Database:
 
-    `python setup.py`
+        python setup.py
 
-**Running:**
+### Running:
 
-`python main.py`
+* To scan the budgets and send the alerts:
 
-## Application usage:
+        python main.py check
 
-To scan the budgets and send the alerts:
+* If you'd like to scan another dates too use "--searching-date":
 
-`python main.py check`
+        python main.py check --searching-date 2020-01-20
 
-If you'd like to scan another dates too use "--searching-date":
+* To list the budgets:
 
-`python main.py check --searching-date 2020-01-20`
+        python main.py list-budgets
 
-To list the budgets:
+* To list the shops:
 
-`python main.py list-budgets`
+        python main.py list-shops
 
-To list the shops:
+* Any Doubts?
 
-`python main.py list-shops`
-
-Doubts?
-
-`python main.py --help`
+        python main.py --help
 
 
+## Docker
+
+### Prerequisites:
+* Docker
+
+### Setting up
+    docker build -t budgets_shop .
+
+### Running:
+
+* To scan the budgets and send the alerts:
+
+        docker run budgets_shop check`
+
+* If you'd like to scan another dates too use "--searching-date":
+
+        docker run budgets_shop check --searching-date 2020-01-20
+
+* To list the budgets:
+
+        docker run budgets_shop list-budgets
+
+* To list the shops:
+
+        docker run budgets_shop list-shops
+
+* Any Doubts?
+
+        docker run budgets_shop --help
+
+## Technologies:
+
+I've used SQLite as database. But, there's no need to import the sql.
+All the database setup is been doing at the apllication.
+
+I've chose a ORM to deal with it. Peewee ORM is simple and minimalyst to work with smaller context.
+
+I'm using also a lib to make the CLI. Typer.
+
+If you want to add data, you can write in app/migrations/data.py file, or in the database itself.
+
+I've add two more commands to visualize the data in the command line. The list of budgets and shops. That way, you can see what has changed in the database.
+
+Challenge resolution time: 5 hours.
+
+You can run th application using python console or docker.
