@@ -60,11 +60,11 @@
 
 * To scan the budgets and send the alerts:
 
-        docker run budgets_shop check`
+        docker run budgets_shop check
 
 * If you'd like to scan another dates too use "--searching-date":
 
-        docker run budgets_shop check --searching-date 2020-01-20
+        docker run budgets_shop check --searching-date 2020-06-20
 
 * To list the budgets:
 
@@ -81,9 +81,9 @@
 ## Technologies:
 
 I've used SQLite as database. But, there's no need to import the sql.
-All the database setup is been doing at the apllication.
+All the database setup is been doing at the application.
 
-I've chose a ORM to deal with it. Peewee ORM is simple and minimalyst to work with smaller context.
+I've chosen an ORM to deal with it. Peewee ORM is simple and minimalist to work with smaller context.
 
 I'm using also a lib to make the CLI. Typer.
 
