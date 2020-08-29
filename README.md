@@ -78,6 +78,10 @@
 
         docker run budgets_shop --help
 
+### Testing:
+
+    pytest app/tests.py 
+
 ## Technologies:
 
 I've used SQLite as database. But, there's no need to import the sql.
